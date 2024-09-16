@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test Server</title>
+  </head>
+  <body>
+    <h1>Test server</h1>
+    <ul>
+      {{ range .List }}
+      <li><h2>{{ .Title }}<h2></li>
+        <a href={{ .Link }} target="_blank">{{ .Link }}</a>
+      {{ end }}
+    </ul>
+  </body>
+</html>
