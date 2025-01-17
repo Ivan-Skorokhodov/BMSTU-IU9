@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Multi-Server Client</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #messages {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+        background-color: #f9f9f9;
+      }
+      #status {
+        margin-bottom: 10px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sending Email Client</h1>
+
+<form id="myForm" method="POST" action="auth">
+  <label>From</label><br />
+  <input type="text" name="from" /><br /><br />
+
+  <label>Password</label><br />
+  <input type="text" name="password" /><br /><br />
+
+  <input type="submit" value="Send" />
+</form>
+
+<p id="response"></p>
+    </form>
+  </body>
+</html>

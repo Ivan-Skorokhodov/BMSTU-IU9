@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Multi-Server Client</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #messages {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+        background-color: #f9f9f9;
+      }
+      #status {
+        margin-bottom: 10px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WebSocket Multi-Server Client</h1>
+    <p id="status">Connecting...</p>
+    <div id="messages"></div>
+
+    <script>
+      // Список серверов
+      const servers = [
+        "ws://185.102.139.168:8083/ws", // Сервер 0
+        "ws://185.102.139.168:8085/ws", // Сервер 1
+        "ws://185.102.139.168:8086/ws", // Сервер 2
+      ];
+
+      const statusElem = document.getElementById("status");
+      const messagesElem = document.getElementById("messages");
+
+      // Функция для подключения к серверу и обработки сообщений
+      function connectToServer(serverUrl, serverIndex) {
+        const socket = new WebSocket(serverUrl);
+
+        socket.onopen = function (event) {
+          const statusMessage = document.createElement("p");
+          statusMessage.textContent = `Connected to server ${
+            serverIndex + 1
+          }: ${serverUrl}`;
+          statusElem.appendChild(statusMessage);
+        };
+
+        socket.onmessage = function (event) {
+          const message = document.createElement("p");
+          message.textContent = `Server ${serverIndex} says: ${event.data}`;
+          messagesElem.appendChild(message);
+        };
+
+        socket.onerror = function (event) {
+          const errorMessage = document.createElement("p");
+          errorMessage.textContent = `Error on server ${
+            serverIndex + 1
+          }: ${serverUrl}`;
+          errorMessage.style.color = "red";
+          messagesElem.appendChild(errorMessage);
+          console.error(`WebSocket error on server ${serverIndex + 1}:`, event);
+        };
+
+        socket.onclose = function (event) {
+          const closeMessage = document.createElement("p");
+          closeMessage.textContent = `Connection closed for server ${
+            serverIndex + 1
+          }: ${serverUrl}`;
+          closeMessage.style.color = "orange";
+          messagesElem.appendChild(closeMessage);
+        };
+      }
+
+      // Подключение к каждому серверу
+      servers.forEach((serverUrl, index) => {
+        connectToServer(serverUrl, index);
+      });
+    </script>
+
+<form id="myForm" method="POST" action="add">
+  <label>Operation</label><br />
+  <input type="text" name="operation" /><br /><br />
+
+  <label>Peer Number</label><br />
+  <input type="number" name="PeerNumber" /><br /><br />
+
+  <input type="submit" value="Send" />
+</form>
+
+<p id="response"></p>
+
+<script>
+  // Перехватываем отправку формы
+  document.getElementById('myForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Останавливаем стандартное поведение (перезагрузка)
+
+      const formData = new FormData(this); // Считываем данные формы
+      const responseElem = document.getElementById('response'); // Элемент для отображения ответа
+
+      // Отправка данных формы через fetch API
+      fetch(this.action, {
+          method: this.method,
+          body: formData,
+      })
+      .then(response => response.text()) // Ожидание текстового ответа от сервера
+      .then(data => {
+          responseElem.textContent = 'Response: ' + data; // Отображение ответа от сервера
+      })
+      .catch(error => {
+          responseElem.textContent = 'Error: ' + error; // Отображение ошибки, если что-то пошло не так
+      });
+  });
+</script>
+    </form>
+  </body>
+</html>

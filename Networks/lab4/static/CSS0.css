@@ -1,0 +1,68 @@
+ DIV, DT, DD, ADDRESS, BLOCKQUOTE, PRE, FORM, LISTING 
+      { 
+	margin-left: 2%;
+	margin-right: 2%;
+	display: block ;
+      }
+
+ BODY { 
+ 	background-color:white; 
+ 	margin-left: 5%; margin-right: 5%; 
+	margin-top: 2%;
+      }
+ 
+ P    { 
+        margin-top:  1%; margin-bot:   0%;
+        margin-left:  0%; 
+      }
+
+ H1   { text-align: center; text-decoration: none; margin-bottom: 0.2em; }
+ H3   { color:#009900; margin-left: 3%; }
+ H4   { font-weight: bold; margin-left: 0%; margin-bottom: 0em; }
+ H5   { color:#006600; margin-left: 3%; font-size:+1; }
+
+ DT   { 
+	font-weight: bold; 
+	margin-top: 3;
+	vertical-align: text-top;
+      }
+ DT.green   { 
+	color:#006600;
+	font-weight: bold; 
+	margin-left: 4%; margin-right: 4%; 
+	margin-top: 3;
+      }
+ DD   {
+	margin-left: 6%; margin-right: 6%; 
+	margin-top: 3;
+      }
+
+ UL { margin-top: 0; margin-bottom: 0.5em; }
+
+ LISTING, PRE 
+	{
+	margin-left: 2%   ;
+ 	line-height: 1.00 ;
+	}
+
+ BR.single-space { 
+	  clear: both; line-height: 0; 
+	  display: block;
+	}
+
+ div.box	{ border: solid; border-width: thin; 
+ 		  margin-top: 5; margin-bottom: 5; margin-right: 5%; margin-left:5%;
+		}
+ div.indent	{ border: none; border-width: thin; 
+ 		  margin-top: 0; margin-bottom: 5; margin-right: 5%; margin-left:5%;
+		}
+ div.color1	{ border: none;  background: #BAEDFF; padding: 0.5em; }
+ div.nobox	{ border: none; border-width: thin; 
+ 		  margin-top: 5; margin-bottom: 5; margin-right: 5%; margin-left:5%;
+		}
+ div.color1	{ border: none;  background: #BAEDFF; padding: 0.5em; }
+ div.footer	{ border: none; border-width: thin; 
+ 		  margin-top: 20; 
+		  margin-left: 0%; margin-right: 0%;
+		  padding: 10;
+		}

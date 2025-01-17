@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test Server</title>
+  </head>
+  <body>
+    <h1>Test server</h1>
+    <ul>
+      {{ range .Mails }}
+      <li><h2>{{ .Title }}<h2></li>
+      {{ end }}
+    </ul>
+    <a href="/delete">Удалить</a>
+  </body>
+</html>

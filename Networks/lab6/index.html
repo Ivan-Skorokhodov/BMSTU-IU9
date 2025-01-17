@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Новости</title>
+  </head>
+  <body>
+    <h1>Последние новости</h1>
+    <ul id="news-list"></ul>
+
+    <script>
+      const ws = new WebSocket("ws://185.102.139.168:9090/ws");
+
+      ws.onmessage = function (event) {
+        const newsList = document.getElementById("news-list");
+        newsList.innerHTML = ""; // Очистить старые новости
+
+        const newsItems = JSON.parse(event.data);
+        newsItems.forEach((item) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `<a href="${item.link}" target="_blank">${
+            item.title
+          }</a> (${new Date(item.date).toLocaleString()})`;
+          newsList.appendChild(listItem);
+        });
+      };
+
+      ws.onerror = function (error) {
+        console.log("Ошибка WebSocket:", error);
+      };
+
+      ws.onclose = function () {
+        console.log("Соединение закрыто");
+      };
+    </script>
+  </body>
+</html>
