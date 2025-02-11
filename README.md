@@ -1,2 +1,2 @@
 # BMSTU-UI9
-Репозиторий с домашними и лабораторными работами кафедры ИУ9
+Repository with home and laboratory work of the department of IU9, Moscow State Technical University
