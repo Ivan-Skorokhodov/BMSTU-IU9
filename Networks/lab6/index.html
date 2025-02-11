@@ -9,7 +9,7 @@
     <ul id="news-list"></ul>
 
     <script>
-      const ws = new WebSocket("ws://185.102.139.168:9090/ws");
+      const ws = new WebSocket("ws://127.0.0.1:9095/ws");
 
       ws.onmessage = function (event) {
         const newsList = document.getElementById("news-list");

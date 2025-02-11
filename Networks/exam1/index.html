@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket</title>
+  </head>
+  <body>
+    <h1>WebSocket</h1>
+    <form id="number-form">
+      <label for="number-input">Введите число:</label>
+      <input type="number" id="number-input" required />
+      <button type="submit">Отправить</button>
+    </form>
+
+    <p id="response"></p>
+
+    <script>
+      const form = document.getElementById("number-form");
+      const input = document.getElementById("number-input");
+      const response = document.getElementById("response");
+
+      const socket = new WebSocket("ws://185.102.139.168:8085/ws");
+
+      socket.onmessage = (event) => {
+        response.textContent = `${event.data}`;
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const number = input.value;
+        socket.send(number);
+        input.value = "";
+      });
+
+      socket.onerror = (error) => {
+        console.error("Ошибка WebSocket:", error);
+      };
+
+      socket.onclose = () => {
+        console.log("Соединение WebSocket закрыто.");
+      };
+    </script>
+  </body>
+</html>

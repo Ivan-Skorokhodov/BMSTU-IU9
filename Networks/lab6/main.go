@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -36,12 +37,13 @@ func main() {
 		handleWebSocket(w, r, db)
 	})
 
-    log.Println("Сервер запущен на http://185.102.139.168:9090")
-    http.ListenAndServe("185.102.139.168:9090", nil)
+    log.Println("Сервер запущен на http://127.0.0.1:9095")
+    http.ListenAndServe("127.0.0.1:9095", nil)
 }
 
 func handleWebSocket(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	conn, err := upgrader.Upgrade(w, r, nil)
+	fmt.Println("test")
 	if err != nil {
 		log.Println("Ошибка обновления до WebSocket:", err)
 		return
@@ -68,6 +70,8 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 				"link":  link,
 			})
 		}
+
+		fmt.Println(newsItems)
 		rows.Close()
 
 		if err := conn.WriteJSON(newsItems); err != nil {

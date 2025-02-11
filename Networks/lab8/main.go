@@ -9,7 +9,7 @@ import (
 
 func main() {
 	from := "smtplabaskor@mail.ru"
-	password := "mKLL9L4cMwuS0tQNkN9s"
+	password := "6tutnurgQR3XyWbrhpha"
 
 	toList := []string{"dreikonline5554545@gmail.com"}
 
